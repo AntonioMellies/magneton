@@ -1,0 +1,26 @@
+CNPJ
+https://br.privalia.com
+https://www.dafiti.com.br
+https://www.posthaus.com.br
+https://www.zattini.com.br/
+
+CNPJ - EMAIL - TELEFONE
+https://www.damyller.com.br
+https://www.voeazul.com.br
+
+
+{
+  "url": "https://www.damyller.com.br",
+  "depth": 0,
+  "type": "BASIC",
+  "filters": {
+    "cnpj": "83.729.004/0156-79",
+    "email": "",
+    "ssl": false,
+    "https": false
+  }
+}
+
+
+EMAIL - TELEFONE
+https://dryobras.com.br/
