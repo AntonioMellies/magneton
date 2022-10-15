@@ -1,10 +1,10 @@
-CNPJ
+BASIC
 https://br.privalia.com
 https://www.dafiti.com.br
 https://www.posthaus.com.br
 https://www.zattini.com.br/
 
-CNPJ - EMAIL - TELEFONE
+FULL
 https://www.damyller.com.br
 https://www.voeazul.com.br
 
@@ -12,15 +12,16 @@ https://www.voeazul.com.br
 {
   "url": "https://www.damyller.com.br",
   "depth": 0,
-  "type": "BASIC",
+  "type": "FULL",
   "filters": {
     "cnpj": "83.729.004/0156-79",
-    "email": "",
+    "email": "sac@damyller.com.br",
+    "phone": "(48) 98852.9200",
     "ssl": false,
     "https": false
   }
 }
 
 
-EMAIL - TELEFONE
+CONTACT
 https://dryobras.com.br/

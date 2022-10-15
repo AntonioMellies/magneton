@@ -13,14 +13,29 @@ class ExtractorHtmlEmail(ExtractorHtmlFilterBase):
     def handle(self, request: CompanyAnalyticResponse = CompanyAnalyticResponse()) -> CompanyAnalyticResponse:
         print("ExtractorHtmlEmail")
         request.emailPublic = AnalyticResultType.REPROVED
+
+        if self.email_exists():
+            request.emailPublic = AnalyticResultType.APPROVED
+
         if self._next_handler:
             return self._next_handler.handle(request)
 
         return request
 
-    def get_magnet_liks(self):
-        re_magnet = ('magnet{1}:\?xt=urn:btih:[a-zA-Z0-9&=%.-]*')
-        for link in self.bsObj.findAll("a", href=re.compile(re_magnet)):
-            link_magnet = link.attrs['href']
-            if link_magnet not in self.magnet_liks:
-                self.magnet_liks.add(link_magnet)
+    def email_exists(self) -> bool:
+
+        if not self.html:
+            return False
+
+        email_filter = self.filters.email
+        if not (email_filter and email_filter.strip()):
+            return False
+
+        strings_emails = self.html.findAll(string=email_filter)
+        for x in strings_emails:
+            list_emails = re.findall(email_filter, str(x))
+            if list_emails:
+                if list_emails.__contains__(email_filter):
+                    return True
+
+        return False

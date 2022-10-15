@@ -4,7 +4,7 @@ import re
 from extractors.html.base.extractor_html_filter_base import ExtractorHtmlFilterBase
 from models.company_analytic_response import CompanyAnalyticResponse
 from models.enums.analytic_result_type_enum import AnalyticResultType
-from utils.extractor_utils import sanitize_cnpj
+from utils.extractor_utils import sanitize_cnpj, concat_tuples
 
 
 class ExtractorHtmlCNPJ(ExtractorHtmlFilterBase):
@@ -36,9 +36,10 @@ class ExtractorHtmlCNPJ(ExtractorHtmlFilterBase):
 
         strings_cnpj = self.html.findAll(string=re.compile(pattern))
         for x in strings_cnpj:
-            list_cnpj = re.findall(pattern, str(x))
-            if list_cnpj:
-                list_cnpj_sanitized = list(map(sanitize_cnpj, list_cnpj))
+            found_cnpjs_list = re.findall(pattern, str(x))
+            group_concatenated_list = list(map(concat_tuples, found_cnpjs_list))
+            if found_cnpjs_list:
+                list_cnpj_sanitized = list(map(sanitize_cnpj, group_concatenated_list))
                 cnpj_filter_sanitized = sanitize_cnpj(cnpj_filter)
 
                 if list_cnpj_sanitized.__contains__(cnpj_filter_sanitized):
