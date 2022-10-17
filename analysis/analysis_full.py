@@ -5,6 +5,7 @@ from extractors.html.extractor_phone import ExtractorHtmlPhone
 from models.filters import Filters
 from validators.site.validator_https import ValidatorHttps
 from validators.site.validator_ssl import ValidatorSSL
+from validators.site.validator_whois import ValidatorWhoIs
 
 
 class AnalysisFull(AnalysisBase):
@@ -17,6 +18,7 @@ class AnalysisFull(AnalysisBase):
         ]
         validatorsSite = [
             ValidatorSSL(),
+            ValidatorWhoIs(),
             ValidatorHttps()
         ]
         super().__init__(extractorsHtml, validatorsSite)

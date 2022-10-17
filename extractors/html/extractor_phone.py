@@ -1,3 +1,4 @@
+import logging
 import re
 
 from extractors.html.base.extractor_html_filter_base import ExtractorHtmlFilterBase
@@ -12,7 +13,7 @@ class ExtractorHtmlPhone(ExtractorHtmlFilterBase):
         super().__init__(filters)
 
     def handle(self, request: CompanyAnalyticResponse = CompanyAnalyticResponse()) -> CompanyAnalyticResponse:
-        print("ExtractorHtmlPhone")
+        logging.info("ExtractorHtmlPhone")
         request.phonePublic = AnalyticResultType.REPROVED
 
         if self.phone_exists():

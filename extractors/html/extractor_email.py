@@ -1,3 +1,4 @@
+import logging
 import re
 
 from extractors.html.base.extractor_html_filter_base import ExtractorHtmlFilterBase
@@ -11,7 +12,7 @@ class ExtractorHtmlEmail(ExtractorHtmlFilterBase):
         super().__init__(filters)
 
     def handle(self, request: CompanyAnalyticResponse = CompanyAnalyticResponse()) -> CompanyAnalyticResponse:
-        print("ExtractorHtmlEmail")
+        logging.info("ExtractorHtmlEmail")
         request.emailPublic = AnalyticResultType.REPROVED
 
         if self.email_exists():
