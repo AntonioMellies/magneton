@@ -25,24 +25,30 @@ class ExtractorHtmlPhone(ExtractorHtmlFilterBase):
         return request
 
     def phone_exists(self) -> bool:
-        pattern = r"(\+\d{2})?(\(?\d{2,3}\)?\s*)?(\d*(\-|\s|\.)?\d+){1,15}"
+        try:
+            pattern = r"(\+\d{2})?(\(?\d{2,3}\)?\s*)?(\d*(\-|\s|\.)?\d+){1,15}"
 
-        if not self.html:
+            if not self.html:
+                return False
+
+            phone_filter = self.filters.phone
+            if not (phone_filter and phone_filter.strip()):
+                return False
+
+            strings_phones = self.html.findAll(string=re.compile(pattern))
+            for x in strings_phones:
+                found_phones_list = re.findall(pattern, str(x))
+                group_concatenated_list = list(map(concat_tuples, found_phones_list))
+                if group_concatenated_list:
+                    phones_sanitized_list = list(map(sanitize_phone, group_concatenated_list))
+                    filter_sanitized = sanitize_phone(phone_filter)
+
+                    if phones_sanitized_list.__contains__(filter_sanitized):
+                        return True
+
+        except Exception as e:
+            logging.error(e)
             return False
 
-        phone_filter = self.filters.phone
-        if not (phone_filter and phone_filter.strip()):
+        else:
             return False
-
-        strings_phones = self.html.findAll(string=re.compile(pattern))
-        for x in strings_phones:
-            found_phones_list = re.findall(pattern, str(x))
-            group_concatenated_list = list(map(concat_tuples, found_phones_list))
-            if group_concatenated_list:
-                phones_sanitized_list = list(map(sanitize_phone, group_concatenated_list))
-                filter_sanitized = sanitize_phone(phone_filter)
-
-                if phones_sanitized_list.__contains__(filter_sanitized):
-                    return True
-
-        return False

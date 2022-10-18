@@ -1,5 +1,6 @@
 from typing import List
 from urllib.request import Request, urlopen
+import ssl
 
 from bs4 import BeautifulSoup
 
@@ -27,7 +28,12 @@ class ExtractServiceHtml(ExtractService):
     def get_html_from_url(self) -> BeautifulSoup:
         req = Request(self.url)
         req.add_header('User-Agent', get_user_agent())
-        html = urlopen(req)
+
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+
+        html = urlopen(req, context=ctx)
         return BeautifulSoup(html, "html.parser")
 
     def extract(self, response: Response = Response()) -> Response:

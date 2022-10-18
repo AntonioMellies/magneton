@@ -1,4 +1,5 @@
 import logging
+
 import whois
 
 from models.company_analytic_response import CompanyAnalyticResponse
@@ -26,13 +27,14 @@ class ValidatorWhoIs(ValidatorSiteSimpleBase):
         return request
 
     def valid_whois(self):
-
-        if not self.url:
-            return False
-
         try:
+            if not self.url:
+                return False
+
             response = whois.whois(self.url)
-        except Exception:
+
+        except Exception as e:
+            logging.error(e)
             return False
         else:
             self.whois_info = response

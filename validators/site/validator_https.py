@@ -1,4 +1,5 @@
 import logging
+
 import requests
 
 from models.company_analytic_response import CompanyAnalyticResponse
@@ -24,13 +25,17 @@ class ValidatorHttps(ValidatorSiteSimpleBase):
         return request
 
     def valid_https(self):
+        try:
+            if not self.url:
+                return False
 
-        if not self.url:
+            response = requests.get(self.url, verify=False)
+
+            if not response.url.lower().startswith('https'):
+                return False
+
+        except Exception as e:
+            logging.error(e)
             return False
-
-        response = requests.get(self.url)
-
-        if not response.url.lower().startswith('https'):
-            return False
-
-        return True
+        else:
+            return True

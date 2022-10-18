@@ -24,19 +24,23 @@ class ExtractorHtmlEmail(ExtractorHtmlFilterBase):
         return request
 
     def email_exists(self) -> bool:
+        try:
+            if not self.html:
+                return False
 
-        if not self.html:
+            email_filter = self.filters.email
+            if not (email_filter and email_filter.strip()):
+                return False
+
+            strings_emails = self.html.findAll(string=email_filter)
+            for x in strings_emails:
+                list_emails = re.findall(email_filter, str(x))
+                if list_emails:
+                    if list_emails.__contains__(email_filter):
+                        return True
+
+        except Exception as e:
+            logging.error(e)
             return False
-
-        email_filter = self.filters.email
-        if not (email_filter and email_filter.strip()):
+        else:
             return False
-
-        strings_emails = self.html.findAll(string=email_filter)
-        for x in strings_emails:
-            list_emails = re.findall(email_filter, str(x))
-            if list_emails:
-                if list_emails.__contains__(email_filter):
-                    return True
-
-        return False

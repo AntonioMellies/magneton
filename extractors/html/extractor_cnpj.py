@@ -25,24 +25,29 @@ class ExtractorHtmlCNPJ(ExtractorHtmlFilterBase):
         return request
 
     def cnpj_exists(self) -> bool:
-        pattern = r"(\d{2}\.?\d{3}\.\d{3}/?\d{4}-?\d{2})"
+        try:
+            pattern = r"(\d{2}\.?\d{3}\.\d{3}/?\d{4}-?\d{2})"
 
-        if not self.html:
+            if not self.html:
+                return False
+
+            cnpj_filter = self.filters.cnpj
+            if not (cnpj_filter and cnpj_filter.strip()):
+                return False
+
+            strings_cnpj = self.html.findAll(string=re.compile(pattern))
+            for x in strings_cnpj:
+                found_cnpjs_list = re.findall(pattern, str(x))
+                group_concatenated_list = list(map(concat_tuples, found_cnpjs_list))
+                if found_cnpjs_list:
+                    list_cnpj_sanitized = list(map(sanitize_cnpj, group_concatenated_list))
+                    cnpj_filter_sanitized = sanitize_cnpj(cnpj_filter)
+
+                    if list_cnpj_sanitized.__contains__(cnpj_filter_sanitized):
+                        return True
+
+        except Exception as e:
+            logging.error(e)
             return False
-
-        cnpj_filter = self.filters.cnpj
-        if not (cnpj_filter and cnpj_filter.strip()):
+        else:
             return False
-
-        strings_cnpj = self.html.findAll(string=re.compile(pattern))
-        for x in strings_cnpj:
-            found_cnpjs_list = re.findall(pattern, str(x))
-            group_concatenated_list = list(map(concat_tuples, found_cnpjs_list))
-            if found_cnpjs_list:
-                list_cnpj_sanitized = list(map(sanitize_cnpj, group_concatenated_list))
-                cnpj_filter_sanitized = sanitize_cnpj(cnpj_filter)
-
-                if list_cnpj_sanitized.__contains__(cnpj_filter_sanitized):
-                    return True
-
-        return False
