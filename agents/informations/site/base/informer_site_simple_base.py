@@ -2,16 +2,11 @@ from __future__ import annotations
 
 from abc import abstractmethod
 
-from extractors.html.base.extractor_html import ExtractorHtml
+from agents.informations.site.base.informer_site import InformerSite
 from models.base.response import Response
-from models.filters import Filters
 
 
-class ExtractorHtmlFilterBase(ExtractorHtml):
-
-    def __init__(self, filters: Filters) -> None:
-        super().__init__()
-        self.filters = filters
+class InformerSiteSimpleBase(InformerSite):
 
     @abstractmethod
     def handle(self, request: Response = Response()) -> Response:

@@ -2,8 +2,8 @@ from typing import List
 
 from models.base.response import Response
 from utils.url_utils import valid_and_return_url
-from validators.site.base.validator_site import ValidatorSite
-from validators.validate_service import ValidateService
+from agents.validators.site.base.validator_site import ValidatorSite
+from agents.validators.validate_service import ValidateService
 
 
 class ValidateServiceSite(ValidateService):

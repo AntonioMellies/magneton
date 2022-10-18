@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from abc import abstractmethod
 
-from extractors.html.base.extractor_html import ExtractorHtml
+from agents.extractors.html.base.extractor_html import ExtractorHtml
 from models.base.response import Response
 
 

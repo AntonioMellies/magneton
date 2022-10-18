@@ -1,11 +1,11 @@
+from agents.extractors.html.extractor_cnpj import ExtractorHtmlCNPJ
+from agents.extractors.html.extractor_email import ExtractorHtmlEmail
+from agents.extractors.html.extractor_phone import ExtractorHtmlPhone
+from agents.informations.site.informer_whois import InformerWhoIs
+from agents.validators.site.validator_https import ValidatorHttps
+from agents.validators.site.validator_ssl import ValidatorSSL
 from analysis.analysis_base import AnalysisBase
-from extractors.html.extractor_cnpj import ExtractorHtmlCNPJ
-from extractors.html.extractor_email import ExtractorHtmlEmail
-from extractors.html.extractor_phone import ExtractorHtmlPhone
 from models.filters import Filters
-from validators.site.validator_https import ValidatorHttps
-from validators.site.validator_ssl import ValidatorSSL
-from validators.site.validator_whois import ValidatorWhoIs
 
 
 class AnalysisFull(AnalysisBase):
@@ -18,7 +18,9 @@ class AnalysisFull(AnalysisBase):
         ]
         validatorsSite = [
             ValidatorSSL(),
-            ValidatorWhoIs(),
             ValidatorHttps()
         ]
-        super().__init__(extractorsHtml, validatorsSite)
+        informersSite = [
+            InformerWhoIs()
+        ]
+        super().__init__(extractorsHtml, validatorsSite, informersSite)

@@ -1,6 +1,6 @@
+from agents.extractors.html.extractor_email import ExtractorHtmlEmail
+from agents.extractors.html.extractor_phone import ExtractorHtmlPhone
 from analysis.analysis_base import AnalysisBase
-from extractors.html.extractor_email import ExtractorHtmlEmail
-from extractors.html.extractor_phone import ExtractorHtmlPhone
 from models.filters import Filters
 
 
@@ -12,4 +12,5 @@ class AnalysisContact(AnalysisBase):
             ExtractorHtmlPhone(filters),
         ]
         validatorsSite = []
-        super().__init__(extractorsHtml, validatorsSite)
+        informersSite = []
+        super().__init__(extractorsHtml, validatorsSite, informersSite)

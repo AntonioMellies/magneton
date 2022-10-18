@@ -5,7 +5,7 @@ import requests
 
 from models.company_analytic_response import CompanyAnalyticResponse
 from models.enums.analytic_result_type_enum import AnalyticResultType
-from validators.site.base.validator_site_simple_base import ValidatorSiteSimpleBase
+from agents.validators.site.base.validator_site_simple_base import ValidatorSiteSimpleBase
 
 
 class ValidatorSSL(ValidatorSiteSimpleBase):

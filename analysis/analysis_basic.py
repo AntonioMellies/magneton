@@ -1,5 +1,5 @@
+from agents.extractors.html.extractor_cnpj import ExtractorHtmlCNPJ
 from analysis.analysis_base import AnalysisBase
-from extractors.html.extractor_cnpj import ExtractorHtmlCNPJ
 from models.filters import Filters
 
 
@@ -10,4 +10,5 @@ class AnalysisBasic(AnalysisBase):
             ExtractorHtmlCNPJ(filters),
         ]
         validatorsSite = []
-        super().__init__(extractorsHtml, validatorsSite)
+        informersSite = []
+        super().__init__(extractorsHtml, validatorsSite, informersSite)

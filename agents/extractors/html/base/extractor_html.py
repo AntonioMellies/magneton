@@ -2,7 +2,7 @@ from abc import ABC
 
 from bs4 import BeautifulSoup
 
-from extractors.extractor import Extractor
+from agents.extractors.extractor import Extractor
 
 
 class ExtractorHtml(Extractor, ABC):

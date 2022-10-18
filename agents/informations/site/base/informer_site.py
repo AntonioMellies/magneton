@@ -1,9 +1,9 @@
 from abc import ABC
 
-from validators.validator import Validator
+from agents.informations.informer import Informer
 
 
-class ValidatorSite(Validator, ABC):
+class InformerSite(Informer, ABC):
     url: str = None
 
     def set_url(self, url):

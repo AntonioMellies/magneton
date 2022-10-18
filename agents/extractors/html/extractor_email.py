@@ -1,7 +1,7 @@
 import logging
 import re
 
-from extractors.html.base.extractor_html_filter_base import ExtractorHtmlFilterBase
+from agents.extractors.html.base.extractor_html_filter_base import ExtractorHtmlFilterBase
 from models.company_analytic_response import CompanyAnalyticResponse
 from models.enums.analytic_result_type_enum import AnalyticResultType
 

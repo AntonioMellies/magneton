@@ -4,8 +4,8 @@ import ssl
 
 from bs4 import BeautifulSoup
 
-from extractors.extract_service import ExtractService
-from extractors.html.base.extractor_html import ExtractorHtml
+from agents.extractors.extract_service import ExtractService
+from agents.extractors.html.base.extractor_html import ExtractorHtml
 from models.base.response import Response
 from utils.request_utils import get_user_agent
 from utils.url_utils import valid_and_return_url

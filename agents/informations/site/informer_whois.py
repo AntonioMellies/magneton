@@ -2,19 +2,19 @@ import logging
 
 import whois
 
+from agents.informations.site.base.informer_site_simple_base import InformerSiteSimpleBase
 from models.company_analytic_response import CompanyAnalyticResponse
 from models.enums.analytic_result_type_enum import AnalyticResultType
-from validators.site.base.validator_site_simple_base import ValidatorSiteSimpleBase
 
 
-class ValidatorWhoIs(ValidatorSiteSimpleBase):
+class InformerWhoIs(InformerSiteSimpleBase):
 
     def __init__(self) -> None:
         super().__init__()
         self.whois_info = None
 
     def handle(self, request: CompanyAnalyticResponse = CompanyAnalyticResponse()) -> CompanyAnalyticResponse:
-        logging.info("ValidatorWhoIs")
+        logging.info("InformerWhoIs")
         request.whois = AnalyticResultType.REPROVED
 
         if self.valid_whois():
