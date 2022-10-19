@@ -7,8 +7,8 @@ Esse projeto é uma API feita em Python que extrai, valida e busca informações
 ### Features
 
 - [x] Extrai e verifica se CNPJ é exibido 
-- [x] Extrai e verifica se Telefone
-- [X] Extrai e verifica se E-mail
+- [x] Extrai e verifica se Telefone é exibido 
+- [X] Extrai e verifica se E-mail é exibido 
 - [X] Valida se site usa o protocolo HTTPS
 - [X] Valida se site utilzia SSL/TLS 
 - [X] Busca informação do domínio [WhoIs]
