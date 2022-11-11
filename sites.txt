@@ -16,9 +16,7 @@ https://www.voeazul.com.br
   "filters": {
     "cnpj": "83.729.004/0156-79",
     "email": "sac@damyller.com.br",
-    "phone": "(48) 98852.9200",
-    "ssl": false,
-    "https": false
+    "phone": "(48) 98852.9200"
   }
 }
 
@@ -29,3 +27,8 @@ https://dryobras.com.br/
 
 SSL ERROR
 https://expired.badssl.com
+
+
+SELO RAV
+https://zangari.com.br
+https://www.bombasrowa.com.br/

@@ -8,6 +8,7 @@ class CompanyAnalyticResponse(Response):
     cnpjPublic: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
     emailPublic: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
     phonePublic: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
+    ravSealPublic: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
     ssl: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
     https: AnalyticResultType = AnalyticResultType.NOT_PERFORMED
     whois: AnalyticResultType = AnalyticResultType.NOT_PERFORMED

@@ -26,7 +26,7 @@ class ExtractorHtmlCNPJ(ExtractorHtmlFilterBase):
 
     def cnpj_exists(self) -> bool:
         try:
-            pattern = r"(\d{2}\.?\d{3}\.\d{3}/?\d{4}-?\d{2})"
+            pattern = r"(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
 
             if not self.html:
                 return False
