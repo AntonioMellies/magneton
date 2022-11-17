@@ -6,9 +6,6 @@ https://www.zattini.com.br/
 
 FULL
 https://www.damyller.com.br
-https://www.voeazul.com.br
-
-
 {
   "url": "https://www.damyller.com.br",
   "depth": 0,
@@ -32,3 +29,7 @@ https://expired.badssl.com
 SELO RAV
 https://zangari.com.br
 https://www.bombasrowa.com.br/
+
+
+BOT
+https://reclameaqui.com.br

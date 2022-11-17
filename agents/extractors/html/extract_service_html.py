@@ -1,13 +1,12 @@
+import logging
 from typing import List
-from urllib.request import Request, urlopen
-import ssl
 
+import cfscrape
 from bs4 import BeautifulSoup
 
 from agents.extractors.extract_service import ExtractService
 from agents.extractors.html.base.extractor_html import ExtractorHtml
 from models.base.response import Response
-from utils.request_utils import get_user_agent
 from utils.url_utils import valid_and_return_url
 
 
@@ -26,15 +25,13 @@ class ExtractServiceHtml(ExtractService):
         self.extractors = extractors
 
     def get_html_from_url(self) -> BeautifulSoup:
-        req = Request(self.url)
-        req.add_header('User-Agent', get_user_agent())
-
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-
-        html = urlopen(req, context=ctx)
-        return BeautifulSoup(html, "html.parser")
+        try:
+            scraper = cfscrape.create_scraper()
+            html = scraper.get(self.url)
+            if html.status_code == 200:
+                return BeautifulSoup(html.content, "html.parser")
+        except Exception as e:
+            logging.error(e)
 
     def extract(self, response: Response = Response()) -> Response:
         if len(self.extractors) == 0:
@@ -48,4 +45,3 @@ class ExtractServiceHtml(ExtractService):
             self.extractors[x - 1].set_next(self.extractors[x])
 
         return self.extractors[0].handle(response)
-
