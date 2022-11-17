@@ -25,7 +25,7 @@ class ExtractorHtmlRAVSeal(ExtractorHtmlSimpleBase):
 
     def rav_seal_exists(self) -> bool:
         try:
-            ids_seals = ["ra-widget-verified", "ra-widget-verified-wrapper"]
+            ids_seals = ["ra-embed-verified-seal"]
             if not self.html:
                 return False
 

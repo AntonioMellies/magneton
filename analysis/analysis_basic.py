@@ -8,8 +8,7 @@ class AnalysisBasic(AnalysisBase):
 
     def __init__(self, filters: Filters) -> None:
         extractorsHtml = [
-            ExtractorHtmlCNPJ(filters),
-            ExtractorHtmlRAVSeal()
+            ExtractorHtmlCNPJ(filters)
         ]
         validatorsSite = []
         informersSite = []

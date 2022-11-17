@@ -1,6 +1,7 @@
 from agents.extractors.html.extractor_cnpj import ExtractorHtmlCNPJ
 from agents.extractors.html.extractor_email import ExtractorHtmlEmail
 from agents.extractors.html.extractor_phone import ExtractorHtmlPhone
+from agents.extractors.html.extractor_rav_seal import ExtractorHtmlRAVSeal
 from agents.informations.site.informer_whois import InformerWhoIs
 from agents.validators.site.validator_https import ValidatorHttps
 from agents.validators.site.validator_ssl import ValidatorSSL
@@ -15,6 +16,7 @@ class AnalysisFull(AnalysisBase):
             ExtractorHtmlCNPJ(filters),
             ExtractorHtmlEmail(filters),
             ExtractorHtmlPhone(filters),
+            ExtractorHtmlRAVSeal(),
         ]
         validatorsSite = [
             ValidatorSSL(),
